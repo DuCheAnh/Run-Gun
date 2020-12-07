@@ -4,9 +4,9 @@ extends KinematicBody2D
 export (float) var speed_value = 2
 export (float) var max_speed_value = 6
 export (float) var jump_value = 10
-export (float) var dash_value = 30
+export (float) var dash_value = 25
 export (int) var gravity_value = 520
-export (float) var dash_wait_time = 0.1
+export (float) var dash_wait_time = 0.15
 export (int) var dash_charge_value = 1
 export (float) var acceleration_value = 0.5
 export (float) var bullet_wait_time = 0.2
@@ -48,6 +48,8 @@ func action_process(var delta):
 	move_and_jump(multiplier,delta)
 	if Input.is_action_pressed("shoot"):
 		Shoot()
+	if Input.is_action_just_pressed("dash"):
+		Dash()
 	#convert to velocity(x,y)
 	velocity.x=direction*multiplier*speed*delta
 	velocity.y+=gravity*delta
@@ -65,15 +67,13 @@ func render_process():
 		$AnimatedSprite.flip_h=true
 		if sign($ShootingPosition.position.x)==1:
 			$ShootingPosition.position.x*=-1
-	if !is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
-			$AnimatedSprite.play("AirTap")		
-	elif is_on_floor():
-		if Input.is_action_pressed("ui_up"):
-			$AnimatedSprite.play("default")
-	
+	if not $Timer.is_stopped():		
+		var ghost_inst=preload("res://Nodes/Ghost.tscn").instance()
+		get_parent().add_child(ghost_inst)
+		ghost_inst.position=position
+		ghost_inst.texture=$AnimatedSprite.frames.get_frame($AnimatedSprite.animation,$AnimatedSprite.frame)
+		ghost_inst.flip_h=$AnimatedSprite.flip_h
 
-	
 
 func move_and_jump(multiplier,delta):
 	if $Timer.is_stopped():
@@ -99,18 +99,15 @@ func move_and_jump(multiplier,delta):
 		else:
 			gravity=post_gravity
 		
-	if Input.is_action_just_pressed("dash"):
-		Dash()
+	
 #Dashing+Shooting
 func Dash():
 	gravity=0
 	speed=dash_speed
+	#velocity.y=-1000*speed*delta
 	$Timer.wait_time=dash_wait_time
 	$Timer.start()
 
-func AirTap():
-	
-	pass
 func Shoot():
 	if $ShootTimer.is_stopped() && bullet_count>0:
 		var fireball=fireball_preload.instance()
