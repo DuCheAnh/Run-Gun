@@ -26,4 +26,5 @@ func _on_FireBall_body_entered(body):
 	if "Player" in body.name:
 			#body.tabbed()
 			pass
+	queue_free()
 

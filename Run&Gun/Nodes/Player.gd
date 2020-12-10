@@ -3,7 +3,7 @@ extends KinematicBody2D
 #variables
 export (float) var speed_value = 2
 export (float) var max_speed_value = 6
-export (float) var jump_value = 10
+export (float) var jump_value = 12
 export (float) var dash_value = 25
 export (int) var gravity_value = 520
 export (float) var dash_wait_time = 0.15
@@ -25,7 +25,6 @@ var direction
 var acceleration
 var de_acceleration
 var bullet_count
-var airtapped
 func _ready():
 	speed=speed_value
 	jump_speed=jump_value
@@ -37,7 +36,7 @@ func _ready():
 	acceleration=acceleration_value
 	de_acceleration=acceleration_value*2
 	bullet_count=default_bullet_count
-	airtapped=false
+
 #functions
 func _physics_process(delta):
 	action_process(delta)
@@ -46,10 +45,13 @@ func _physics_process(delta):
 func action_process(var delta):
 	var multiplier=1000 #multiplying the numbers 
 	move_and_jump(multiplier,delta)
+	charges_reset()
 	if Input.is_action_pressed("shoot"):
 		Shoot()
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and dash_charges>0:
 		Dash()
+	if is_on_ceiling():
+		velocity.y=0;
 	#convert to velocity(x,y)
 	velocity.x=direction*multiplier*speed*delta
 	velocity.y+=gravity*delta
@@ -98,10 +100,11 @@ func move_and_jump(multiplier,delta):
 			gravity=gravity_value
 		else:
 			gravity=post_gravity
-		
+
 	
 #Dashing+Shooting
 func Dash():
+	dash_charges-=1
 	gravity=0
 	speed=dash_speed
 	#velocity.y=-1000*speed*delta
@@ -117,7 +120,10 @@ func Shoot():
 		bullet_count-=1
 		$ShootTimer.wait_time=bullet_wait_time
 		$ShootTimer.start()
-	
+
+func charges_reset():
+	if is_on_floor():
+		dash_charges=dash_charge_value	
 
 #Timer out
 func _on_Timer_timeout():
