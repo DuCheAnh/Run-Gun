@@ -56,7 +56,7 @@ func action_process(var delta):
 	velocity.x=direction*multiplier*speed*delta
 	velocity.y+=gravity*delta
 	#aplly movements to scene
-	move_and_slide (velocity,Floor)
+	velocity=move_and_slide (velocity,Floor)
 
 func render_process():
 	if Input.is_action_pressed("ui_right") and is_on_floor():
