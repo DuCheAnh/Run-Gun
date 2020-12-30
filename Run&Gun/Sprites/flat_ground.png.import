@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light2.png-112cec5a0336cc353b960fdfb6e7b1f1.stex"
+path="res://.import/flat_ground.png-d119d1013ddae9fe2ea1077f322a3fe1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/light2.png"
-dest_files=[ "res://.import/light2.png-112cec5a0336cc353b960fdfb6e7b1f1.stex" ]
+source_file="res://Sprites/flat_ground.png"
+dest_files=[ "res://.import/flat_ground.png-d119d1013ddae9fe2ea1077f322a3fe1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

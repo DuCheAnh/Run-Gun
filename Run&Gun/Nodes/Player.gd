@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 #variables
 export (float) var speed_value = 2
-export (float) var max_speed_value = 6
-export (float) var jump_value = 12
-export (float) var dash_value = 25
+export (float) var max_speed_value = 4
+export (float) var jump_value = 10
+export (float) var dash_value = 15
 export (int) var gravity_value = 520
 export (float) var dash_wait_time = 0.15
 export (int) var dash_charge_value = 1
@@ -25,6 +25,7 @@ var direction
 var acceleration
 var de_acceleration
 var bullet_count
+var casting=false
 func _ready():
 	speed=speed_value
 	jump_speed=jump_value
@@ -46,7 +47,7 @@ func action_process(var delta):
 	var multiplier=1000 #multiplying the numbers 
 	move_and_jump(multiplier,delta)
 	charges_reset()
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		Shoot()
 	if Input.is_action_just_pressed("dash") and dash_charges>0:
 		Dash()
@@ -56,7 +57,7 @@ func action_process(var delta):
 	velocity.x=direction*multiplier*speed*delta
 	velocity.y+=gravity*delta
 	#aplly movements to scene
-	velocity=move_and_slide (velocity,Floor)
+	velocity=move_and_slide(velocity,Floor)
 
 func render_process():
 	if Input.is_action_pressed("ui_right") and is_on_floor():
@@ -75,10 +76,13 @@ func render_process():
 		ghost_inst.position=position
 		ghost_inst.texture=$AnimatedSprite.frames.get_frame($AnimatedSprite.animation,$AnimatedSprite.frame)
 		ghost_inst.flip_h=$AnimatedSprite.flip_h
-
-
+	if Input.is_action_just_pressed("shoot"):
+		$AnimatedSprite.play("cast")
+		casting=true
+	if !casting:
+		$AnimatedSprite.play("default")
 func move_and_jump(multiplier,delta):
-	if $Timer.is_stopped():
+	if $Timer.time_left<dash_wait_time/5:
 		if Input.is_action_pressed("ui_right"):
 			direction=1
 			speed+=acceleration
@@ -94,8 +98,6 @@ func move_and_jump(multiplier,delta):
 			speed=max_speed_value
 		if Input.is_action_just_pressed("ui_up") and is_on_floor():
 			velocity.y=-multiplier*jump_speed*delta
-		if Input.is_action_just_pressed("ui_up") and !is_on_floor():
-			pass
 		if sign(velocity.y)<0:
 			gravity=gravity_value
 		else:
@@ -134,3 +136,7 @@ func _on_Timer_timeout():
 
 func _on_ShootTimer_timeout():
 	$ShootTimer.stop()
+
+
+func _on_AnimatedSprite_animation_finished():
+	casting=false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light4.png-d4f3a0f00acfbcfe4b11a11752017754.stex"
+path="res://.import/brick.png-b95ec73c70364c1639d7f6bb53031bf8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/light4.png"
-dest_files=[ "res://.import/light4.png-d4f3a0f00acfbcfe4b11a11752017754.stex" ]
+source_file="res://Sprites/brick.png"
+dest_files=[ "res://.import/brick.png-b95ec73c70364c1639d7f6bb53031bf8.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
