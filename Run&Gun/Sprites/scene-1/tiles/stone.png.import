@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flat_ground.png-d119d1013ddae9fe2ea1077f322a3fe1.stex"
+path="res://.import/stone.png-492ed2103ffde33024ce40e3edbffd91.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/flat_ground.png"
-dest_files=[ "res://.import/flat_ground.png-d119d1013ddae9fe2ea1077f322a3fe1.stex" ]
+source_file="res://Sprites/scene-1/tiles/stone.png"
+dest_files=[ "res://.import/stone.png-492ed2103ffde33024ce40e3edbffd91.stex" ]
 
 [params]
 

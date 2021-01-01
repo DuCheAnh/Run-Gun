@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Para_sky.png-20d69ba608e2c4b23b6da2c404361546.stex"
+path="res://.import/magi_run_sheet.png-f44e8775c96e8f14cf55ccea6d349f86.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Para_sky.png"
-dest_files=[ "res://.import/Para_sky.png-20d69ba608e2c4b23b6da2c404361546.stex" ]
+source_file="res://Sprites/PlayerAnimation/magi_run_sheet.png"
+dest_files=[ "res://.import/magi_run_sheet.png-f44e8775c96e8f14cf55ccea6d349f86.stex" ]
 
 [params]
 

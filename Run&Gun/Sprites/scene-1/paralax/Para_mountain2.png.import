@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hills.png-33b3119666c158bce38c601db7f467b1.stex"
+path="res://.import/Para_mountain2.png-7f812c0a86a48c68c9ad003cf7b49754.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/hills.png"
-dest_files=[ "res://.import/hills.png-33b3119666c158bce38c601db7f467b1.stex" ]
+source_file="res://Sprites/scene-1/paralax/Para_mountain2.png"
+dest_files=[ "res://.import/Para_mountain2.png-7f812c0a86a48c68c9ad003cf7b49754.stex" ]
 
 [params]
 

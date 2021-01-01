@@ -60,16 +60,21 @@ func action_process(var delta):
 	velocity=move_and_slide(velocity,Floor)
 
 func render_process():
+	
+
 	if Input.is_action_pressed("ui_right") and is_on_floor():
-		$AnimatedSprite.play("default")
+		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h=false
 		if sign($ShootingPosition.position.x)==-1:
 			$ShootingPosition.position.x*=-1
 	elif Input.is_action_pressed("ui_left") and is_on_floor():
-		$AnimatedSprite.play("default")
+		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h=true
 		if sign($ShootingPosition.position.x)==1:
 			$ShootingPosition.position.x*=-1
+	else:
+		if casting==false:
+			$AnimatedSprite.play("idle")
 	if not $Timer.is_stopped():		
 		var ghost_inst=preload("res://Nodes/Ghost.tscn").instance()
 		get_parent().add_child(ghost_inst)
@@ -79,8 +84,7 @@ func render_process():
 	if Input.is_action_just_pressed("shoot"):
 		$AnimatedSprite.play("cast")
 		casting=true
-	if !casting:
-		$AnimatedSprite.play("default")
+	
 func move_and_jump(multiplier,delta):
 	if $Timer.time_left<dash_wait_time/5:
 		if Input.is_action_pressed("ui_right"):

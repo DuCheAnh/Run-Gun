@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone.png-930a59df1cb0ccf1545e428c6900af00.stex"
+path="res://.import/housepillar.png-cb55c32512524b7ff3b7f70b94ac6e1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/stone.png"
-dest_files=[ "res://.import/stone.png-930a59df1cb0ccf1545e428c6900af00.stex" ]
+source_file="res://Sprites/scene-1/tiles/housepillar.png"
+dest_files=[ "res://.import/housepillar.png-cb55c32512524b7ff3b7f70b94ac6e1e.stex" ]
 
 [params]
 

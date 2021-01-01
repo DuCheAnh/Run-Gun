@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Para_grass.png-cf407a0b1a6779b3838523dd29962e73.stex"
+path="res://.import/brick.png-9d289d95706ca07e9c7ff41c7766e9c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Para_grass.png"
-dest_files=[ "res://.import/Para_grass.png-cf407a0b1a6779b3838523dd29962e73.stex" ]
+source_file="res://Sprites/scene-1/tiles/brick.png"
+dest_files=[ "res://.import/brick.png-9d289d95706ca07e9c7ff41c7766e9c1.stex" ]
 
 [params]
 
