@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Nodes/FireballParticles.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.511111, 0.992593 )
+colors = PoolColorArray( 0.839844, 0.678554, 0.127945, 1, 0.925781, 0.562001, 0.296539, 1, 0.933594, 0.106328, 0.0437622, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.418182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 3.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( -360, 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 360.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 10.0
+scale = 2.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 2 )
+
+[node name="FireballParticles" type="Particles2D"]
+rotation = -1.5708
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource( 3 )
+script = ExtResource( 1 )

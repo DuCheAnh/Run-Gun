@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/magi_run_sheet.png-f44e8775c96e8f14cf55ccea6d349f86.stex"
+path="res://.import/magi_fire_cast_sprite.png-e79dc0396684f3c16728bff8f6c5b816.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PlayerAnimation/magi_run_sheet.png"
-dest_files=[ "res://.import/magi_run_sheet.png-f44e8775c96e8f14cf55ccea6d349f86.stex" ]
+source_file="res://Sprites/PlayerAnimation/fire/magi_fire_cast_sprite.png"
+dest_files=[ "res://.import/magi_fire_cast_sprite.png-e79dc0396684f3c16728bff8f6c5b816.stex" ]
 
 [params]
 
