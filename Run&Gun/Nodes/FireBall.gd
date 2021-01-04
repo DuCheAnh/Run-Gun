@@ -37,6 +37,7 @@ func _on_FireBall_body_entered(body):
 
 
 func _on_FireBall_area_entered(area):
-	if "WaterBarrier" in area.name:
+	if area.is_in_group("PlayerElements"):
 		print("destroy")
 		destroy_fireball()
+	

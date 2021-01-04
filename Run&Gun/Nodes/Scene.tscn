@@ -23,6 +23,12 @@ script = ExtResource( 4 )
 [node name="Canon" parent="." instance=ExtResource( 5 )]
 position = Vector2( 280, 72 )
 
+[node name="Canon3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 180.888, 86.4771 )
+
+[node name="Canon2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 133.002, 44.6049 )
+
 [node name="SceneTileMap" parent="." instance=ExtResource( 1 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

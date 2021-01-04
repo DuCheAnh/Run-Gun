@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://Sprites/PlayerAnimation/water/magi_water_idle_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/Player.gd" type="Script" id=2]
@@ -362,7 +362,7 @@ animations = [ {
 "speed": 12.0
 }, {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
-"loop": false,
+"loop": true,
 "name": "water_splash",
 "speed": 24.0
 }, {
@@ -427,6 +427,9 @@ angle_random = 1.0
 scale_curve = SubResource( 71 )
 color_ramp = SubResource( 69 )
 
+[sub_resource type="RectangleShape2D" id=73]
+extents = Vector2( 1.56802, 4.67881 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -442,8 +445,9 @@ visible = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 66 )
-animation = "fire_cast"
-frame = 3
+animation = "water_splash"
+frame = 4
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -465,6 +469,15 @@ lifetime = 0.2
 explosiveness = 0.2
 local_coords = false
 process_material = SubResource( 72 )
+
+[node name="WaterSwordArea" type="Area2D" parent="." groups=[
+"PlayerElements",
+]]
+
+[node name="SwordCollision" type="CollisionShape2D" parent="WaterSwordArea"]
+position = Vector2( 5.84022, 0.117985 )
+shape = SubResource( 73 )
+disabled = true
 [connection signal="close_barrier" from="." to="WaterBarrier" method="_on_Player_close_barrier"]
 [connection signal="init_barrier" from="." to="WaterBarrier" method="_on_Player_init_barrier"]
 [connection signal="barrier_destroyed" from="WaterBarrier" to="." method="_on_water_barrier_barrier_destroyed"]

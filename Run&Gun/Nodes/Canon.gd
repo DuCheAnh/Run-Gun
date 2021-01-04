@@ -9,3 +9,10 @@ func _process(delta):
 		fireball.position=$Position2D.global_position
 		get_parent().add_child(fireball)
 		
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("PlayerElements"):
+		print(area.name)
+		queue_free()
+	pass

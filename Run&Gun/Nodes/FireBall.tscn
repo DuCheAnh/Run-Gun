@@ -26,7 +26,9 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[node name="FireBall" type="Area2D"]
+[node name="FireBall" type="Area2D" groups=[
+"PlayerElements",
+]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

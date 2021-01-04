@@ -65,6 +65,7 @@ func action_process(var delta):
 		if current_form=="fire":
 			Shoot()
 		elif current_form=="water":
+			$WaterSwordArea/SwordCollision.disabled=false
 			pass
 	if Input.is_action_just_pressed("dash") and dash_charges>0:
 		if current_form=="electric":
@@ -123,20 +124,24 @@ func render_process():
 		switch_form()
 	set_ani()
 	#fliping sprites
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and !casting:
 		$AnimatedSprite.flip_h=false
+		if sign($WaterSwordArea/SwordCollision.position.x)==-1:
+			$WaterSwordArea/SwordCollision.position.x*=-1
 		if sign($ShootingPosition.position.x)==-1:
 				$ShootingPosition.position.x*=-1
 		$Particles2D.position.x=-3
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") and !casting:
 		if sign($ShootingPosition.position.x)==1:
 			$ShootingPosition.position.x*=-1
+		if sign($WaterSwordArea/SwordCollision.position.x)==1:
+			$WaterSwordArea/SwordCollision.position.x*=-1
 		$Particles2D.position.x=3
 		$AnimatedSprite.flip_h=true
 	#changing animations
-	if Input.is_action_pressed("ui_right") and is_on_floor():
+	if Input.is_action_pressed("ui_right") and is_on_floor() and !casting:
 		$AnimatedSprite.play(ani_run)
-	elif Input.is_action_pressed("ui_left") and is_on_floor():
+	elif Input.is_action_pressed("ui_left") and is_on_floor() and !casting:
 		$AnimatedSprite.play(ani_run)
 	else:
 		if casting==false && is_on_floor():
@@ -163,10 +168,10 @@ func render_process():
 		$Particles2D.emitting=false
 func move_and_jump(multiplier,delta):
 	if $Timer.time_left<dash_wait_time/5:
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right") and !casting:
 			direction=1
 			speed+=acceleration
-		elif Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left") and !casting:
 			speed+=acceleration
 			direction=-1
 		else:
@@ -176,7 +181,7 @@ func move_and_jump(multiplier,delta):
 				direction=0
 		if speed>=max_speed_value: 
 			speed=max_speed_value
-		if Input.is_action_just_pressed("ui_up") and is_on_floor():
+		if Input.is_action_just_pressed("ui_up") and is_on_floor() and !casting:
 			velocity.y=-multiplier*jump_speed*delta
 		if sign(velocity.y)<0:
 			gravity=gravity_value
@@ -223,7 +228,8 @@ func _on_ShootTimer_timeout():
 	$ShootTimer.stop()
 
 func _on_AnimatedSprite_animation_finished():
-	casting=false
+		casting=false
+		$WaterSwordArea/SwordCollision.disabled=true
 
 
 func _on_water_barrier_barrier_destroyed():

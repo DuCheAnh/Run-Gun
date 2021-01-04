@@ -30,13 +30,14 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=6]
 radius = 6.5
 
-[node name="WaterBarrier" type="Area2D"]
+[node name="WaterBarrier" type="Area2D" groups=[
+"PlayerElements",
+]]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 show_behind_parent = true
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
