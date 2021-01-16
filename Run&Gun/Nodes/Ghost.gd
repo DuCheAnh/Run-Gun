@@ -18,3 +18,4 @@ func _ready():
 
 func _on_aTween_tween_completed(object, key):
 	queue_free()
+

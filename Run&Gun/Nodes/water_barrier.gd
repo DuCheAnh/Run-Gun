@@ -4,9 +4,7 @@ signal barrier_destroyed
 func _ready():
 	_on_Player_close_barrier()
 
-func _on_water_barrier_body_entered(body):
-	if not "Player" in body.name and !$CollisionShape2D.disabled:
-		print(body.name)
+
 	
 
 
@@ -25,6 +23,22 @@ func _on_Player_close_barrier():
 
 
 func _on_water_barrier_area_entered(area):
-	if "FireBall" in area.name:
+	if area.is_in_group("PlayerElements"):
 		_on_Player_close_barrier()
 		emit_signal("barrier_destroyed")
+
+		
+func _on_water_barrier_body_entered(body):
+	if body.is_in_group("Enemies"):
+		_on_Player_close_barrier()
+		emit_signal("barrier_destroyed")
+	
+	
+
+
+func _on_guard_init_barrier():
+	_on_Player_init_barrier()
+
+
+func _on_KingAuthur_init_barrier():
+	_on_Player_init_barrier()

@@ -64,11 +64,11 @@ func action_process(var delta):
 	if Input.is_action_just_pressed("shoot"):
 		if current_form=="fire":
 			Shoot()
-		elif current_form=="water":
+		elif current_form=="water" and is_on_floor():
 			$WaterSwordArea/SwordCollision.disabled=false
 			pass
-	if Input.is_action_just_pressed("dash") and dash_charges>0:
-		if current_form=="electric":
+	if Input.is_action_just_pressed("dash"):
+		if current_form=="electric" and dash_charges>0:
 			Dash()
 		elif current_form=="water":
 			Barrier()
@@ -159,8 +159,9 @@ func render_process():
 		ghost_inst.texture=$AnimatedSprite.frames.get_frame($AnimatedSprite.animation,$AnimatedSprite.frame)
 		ghost_inst.flip_h=$AnimatedSprite.flip_h
 	if Input.is_action_just_pressed("shoot"):
-		$AnimatedSprite.play(ani_cast)
-		casting=true
+		if not(current_form=="water" and !is_on_floor()):
+			$AnimatedSprite.play(ani_cast)
+			casting=true
 		
 	if $AnimatedSprite.animation!=ani_idle and is_on_floor() and !casting:
 		$Particles2D.emitting=true
@@ -233,5 +234,7 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_water_barrier_barrier_destroyed():
+	barrier_counter-=1
+	print(barrier_counter)
 	pass
 	
