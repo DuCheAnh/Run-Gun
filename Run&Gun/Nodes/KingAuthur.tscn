@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Nodes/water_barrier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://KingAuthur.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/king_throne.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/king_throneless.png" type="Texture" id=4]
+[ext_resource path="res://Nodes/DialogBubble.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -33,6 +34,14 @@ animation = "throne"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="DialogBubble" parent="." instance=ExtResource( 5 )]
+margin_left = -30.0
+margin_top = -20.0
+margin_right = 30.0
+margin_bottom = -8.0
 [connection signal="area_entered" from="." to="." method="_on_KingAuthur_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_KingAuthur_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_KingAuthur_body_exited"]
 [connection signal="init_barrier" from="." to="WaterBarrier" method="_on_KingAuthur_init_barrier"]
+[connection signal="init_dialog" from="." to="DialogBubble" method="_on_KingAuthur_init_dialog"]

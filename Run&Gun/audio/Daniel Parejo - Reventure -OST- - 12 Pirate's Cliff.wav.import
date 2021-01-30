@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Daniel Parejo - Reventure -OST- - 12 Pirate's Cliff.wav-1d0becb82698f8d365ddd93fd01b6a23.sample"
+
+[deps]
+
+source_file="res://audio/Daniel Parejo - Reventure -OST- - 12 Pirate's Cliff.wav"
+dest_files=[ "res://.import/Daniel Parejo - Reventure -OST- - 12 Pirate's Cliff.wav-1d0becb82698f8d365ddd93fd01b6a23.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

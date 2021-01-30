@@ -2,6 +2,7 @@ extends Area2D
 
 var velocity=Vector2()
 var direction
+var damage = 1
 export (int) var firing_speed=100
 const fireball_particle=preload("res://Nodes/FireballParticles.tscn")
 func set_direction(isleft):
@@ -33,6 +34,8 @@ func destroy_fireball():
 	get_tree().root.add_child(particle)
 	queue_free()
 func _on_FireBall_body_entered(body):
+	if body.is_in_group("Mob"):
+		body.damage(damage)
 	if "Player" in body.name:
 		print("fireball hit player")
 	destroy_fireball()
@@ -41,9 +44,12 @@ func _on_FireBall_body_entered(body):
 
 
 func _on_FireBall_area_entered(area):
-	if area.is_in_group("PlayerElements"):
-		destroy_fireball()
 	if area.is_in_group("ElementsStopper"):	
+		destroy_fireball()
+	if area.is_in_group("Mob"):
+		area.damage(damage)
 		destroy_fireball()
 		
 	
+
+

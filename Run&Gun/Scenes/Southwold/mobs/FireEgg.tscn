@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Simple_Platformer/8x8/Enemies/shooting_enemy1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Simple_Platformer/8x8/Enemies/shooting_enemy2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Simple_Platformer/8x8/Enemies/shooting_enemy3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Simple_Platformer/8x8/Enemies/shooting_enemy4.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Simple_Platformer/8x8/Enemies/shooting_enemy_shoot.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Southwold/mobs/FireEgg.gd" type="Script" id=6]
+[ext_resource path="res://audio/mobhit.wav" type="AudioStream" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.59749, 3.79095 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 31.8752, 11.0744 )
+
+[node name="FireEgg" type="KinematicBody2D" groups=[
+"Mob",
+]]
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+shape = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 8.07559, 0 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+[connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]

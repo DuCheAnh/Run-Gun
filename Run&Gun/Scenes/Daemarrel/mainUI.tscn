@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Daemarrel/mainUI.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/UI/ui.png" type="Texture" id=2]
+[ext_resource path="res://Font/Augusta.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Font/ka1.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 200
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="mainUI" type="Control"]
+margin_right = 192.0
+margin_bottom = 108.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 724.0
+rect_scale = Vector2( 0.15, 0.15 )
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.6234
+margin_top = 35.5459
+margin_right = -47.3766
+margin_bottom = -42.4541
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = SubResource( 1 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 64.6234
+margin_top = 65.7747
+margin_right = 144.623
+margin_bottom = 95.7747
+rect_scale = Vector2( 0.8, 0.8 )
+custom_fonts/font = SubResource( 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 57.7611
+margin_top = -1.42109e-14
+margin_right = 460.761
+margin_bottom = 222.0
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 2 )
+text = "Magi"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

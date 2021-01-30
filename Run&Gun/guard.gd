@@ -3,23 +3,20 @@ extends Area2D
 
 signal init_barrier
 signal close_barrier
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+signal init_dialog
+export (String) var message
 
 func _on_guard_body_entered(body):
 	if body.is_in_group("Player"):
-		print("hello player")
+		emit_signal("init_dialog",message)
 
 
 func _on_guard_area_entered(area):
 	if area.is_in_group("PlayerElements"):
 		emit_signal("init_barrier")
+
+
+
+func _on_guard_body_exited(body):
+	if body.is_in_group("Player"):
+		$DialogBubble.visible=false

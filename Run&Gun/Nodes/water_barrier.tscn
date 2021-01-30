@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/water_ball_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/water_barrier.gd" type="Script" id=2]
+[ext_resource path="res://audio/shield_up.wav" type="AudioStream" id=3]
+[ext_resource path="res://audio/shield.wav" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -38,11 +40,19 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 show_behind_parent = true
 frames = SubResource( 5 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1.05, 1.05 )
 shape = SubResource( 6 )
+
+[node name="up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="down" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
 [connection signal="area_entered" from="." to="." method="_on_water_barrier_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_water_barrier_body_entered"]

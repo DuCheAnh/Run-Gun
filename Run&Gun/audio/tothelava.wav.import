@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tothelava.wav-6626a8e69390e80fae42cfb3b36ee9cc.sample"
+
+[deps]
+
+source_file="res://audio/tothelava.wav"
+dest_files=[ "res://.import/tothelava.wav-6626a8e69390e80fae42cfb3b36ee9cc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

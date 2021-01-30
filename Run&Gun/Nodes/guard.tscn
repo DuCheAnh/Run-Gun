@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://guard.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/kings_guard.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/water_barrier.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/DialogBubble.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.4702, 12.5946 )
@@ -17,6 +18,14 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="DialogBubble" parent="." instance=ExtResource( 4 )]
+margin_left = -30.0
+margin_top = -25.0
+margin_right = 30.0
+margin_bottom = -13.0
 [connection signal="area_entered" from="." to="." method="_on_guard_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_guard_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_guard_body_exited"]
 [connection signal="init_barrier" from="." to="WaterBarrier" method="_on_guard_init_barrier"]
+[connection signal="init_dialog" from="." to="DialogBubble" method="_on_guard_init_dialog"]
